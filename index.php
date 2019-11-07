@@ -3,24 +3,17 @@
     if(!empty($_POST)){
 
         $texto = $_POST['texto'];
-        $txt = explode(" ", $texto);
-        print_r($txt);
-        $masCorto = finShort($txt);
+
+        $masCorto = finShort($texto);
 
         print_r('El tamaño del texto más corto es de: ' . $masCorto);
 
     }
     function finShort($string){
-        $dato = count($string);
-        foreach($string as $key => $item){
-            if($key != $dato-1){
-                if(strlen($item) < strlen($string[$key + 1])){
-                    printf($item);
-                }
-            }
-        }
-
-        return $dato;
+        $dato = explode(" ", $string);
+        $resultado = array_map("strlen", $dato);
+        $resultado = min($resultado);
+        return $resultado;
     }
 ?>
 <!DOCTYPE html>
